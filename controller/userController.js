@@ -1,4 +1,4 @@
-import { hashSync } from "bcryptjs";
+import bcrypt from 'bcryptjs'
 import User from "../model/UserModel.js";
 
 export const getAllUsers=async(req,res)=>{
@@ -32,7 +32,7 @@ export const updateUser=async(req,res)=>{
         const id=req.user._id;
         
         if(req.body.password){
-            req.body.password=hashSync(req.body.password,10)
+            req.body.password=bcrypt.hashSync(req.body.password,10)
         }
         const updatedUser= await User.findOneAndUpdate(id,{...req.body},{returnOriginal:false})
        
