@@ -1,4 +1,4 @@
-import { hashSync } from "bcrypt";
+import { hashSync } from "bcryptjs";
 import User from "../model/UserModel.js";
 
 export const getAllUsers=async(req,res)=>{
