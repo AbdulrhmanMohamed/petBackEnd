@@ -6,9 +6,7 @@ export const searchRes=async(req,res)=>{
         const searchRes=await User.find({location:location})
         console.log('searchRes SoFar',searchRes)
         if(searchRes.length){
-            console.log('getting inside the filter')
            let searchByService= searchRes.filter((item,index)=>item.services.includes(service))
-            console.log('res after filter ',searchRes)
             if(searchByService.length){
 
                 res.status(200).json(searchByService)

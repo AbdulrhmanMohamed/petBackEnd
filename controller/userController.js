@@ -30,12 +30,10 @@ export const getUserById=async(req,res)=>{
 export const updateUser=async(req,res)=>{
     try{
         const id=req.user._id;
-        
         if(req.body.password){
             req.body.password=bcrypt.hashSync(req.body.password,10)
         }
-        const updatedUser= await User.findOneAndUpdate(id,{...req.body},{returnOriginal:false})
-       
+        const updatedUser= await User.findByIdAndUpdate(id,{...req.body})
         if(updatedUser){
             res.status(200).json(updatedUser)
 

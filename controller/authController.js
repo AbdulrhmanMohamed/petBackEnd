@@ -38,6 +38,7 @@ export const Register=async(req,res)=>{
 
 
 export const Login=async(req,res)=>{
+   
     const {email,password,userName}=req.body
     
     try{
@@ -47,7 +48,7 @@ export const Login=async(req,res)=>{
         if(user){
             
 
-            
+
             if(bcrypt.compareSync(password,user.password)){
                 // console.log('user is exist')
                 const token=jwt.sign({id:user._id},process.env.SECRET,{expiresIn:'30d'})
@@ -76,7 +77,8 @@ export const Login=async(req,res)=>{
 }
 
 export const userProfile=async(req,res)=>{
-    
+    console.log('++++++++++++++++++++++++++++++userProfile')
+    console.log('requser',req.user)
     if(req.user){
         
         res.status(200).json(req.user);
