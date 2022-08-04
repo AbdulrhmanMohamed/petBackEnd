@@ -53,6 +53,7 @@ export const deleteUser=async(req,res)=>{
     try{
         const deletedUser=await User.findByIdAndDelete(id)
         if(deletedUser){
+            console.log('deletedUser',deletedUser)
             res.status(200).json('User Deleted Successfully ');
         }
 
