@@ -5,7 +5,8 @@ export const getAllUsers=async(req,res)=>{
     try{
         const allusers=await User.find()
         if(allusers.length){
-            res.status(200).json(allusers);
+           const filteredUser= allusers.filter(user =>user.email!="admin@admin.com")
+            res.status(200).json(filteredUser);
         }
     }catch(e){
         res.status(500).json(e)
@@ -41,4 +42,23 @@ export const updateUser=async(req,res)=>{
     }catch(e){
         res.status(500).json(e.message)
     }
+}
+
+export const deleteUser=async(req,res)=>{
+    
+    const {id}=req.query;
+    console.log('++++++++++++++++++++++++++++++++++++++++++++deletUser')
+    console.log('========================================================')
+    console.log('idQuery',req.query)
+    try{
+        const deletedUser=await User.findByIdAndDelete(id)
+        if(deletedUser){
+            res.status(200).json('User Deleted Successfully ');
+        }
+
+    }
+    catch(e){
+        res.status(500).json(e)
+    }
+   
 }

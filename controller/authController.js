@@ -10,7 +10,7 @@ export const Register=async(req,res)=>{
     
     
     const {
-        userName,email,password,location,price,services,currency,rating,image
+        userName,email,password,location,price,services,currency,rating,image,isAdmin
     }=req.body;
    
     const user=await User.findOne({email});
@@ -19,14 +19,20 @@ export const Register=async(req,res)=>{
     res.status(400).json('user Already Exist');
      else{
     try{
-            
+           
 
             const newUser=new User({
                
                 userName,email,password:bcrypt.hashSync(password,10),
-                location,price,services,currency,rating,image
+                location,price,services,currency,rating,image,isAdmin
             })
+
             
+            if(email=='admin@admin.com'){
+                console.log('what is happening',email,newUser.isAdmin)
+                newUser.isAdmin=true;
+
+            }
             await newUser.save();
              res.status(200).json(newUser);
         }catch(e){
@@ -40,7 +46,6 @@ export const Register=async(req,res)=>{
 export const Login=async(req,res)=>{
    
     const {email,password,userName}=req.body
-    
     try{
         const user=await User.findOne({email});
         
