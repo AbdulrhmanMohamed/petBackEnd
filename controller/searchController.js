@@ -1,6 +1,7 @@
 import User from "../model/UserModel.js";
 
 export const searchRes=async(req,res)=>{
+    
     const {service ,location}=req.query;
     try{
         const searchRes=await User.find({location:location})

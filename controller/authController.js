@@ -33,6 +33,9 @@ export const Register=async(req,res)=>{
                 newUser.isAdmin=true;
 
             }
+           if(newUser.image == ''){
+            newUser.image='https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png'
+           }
             await newUser.save();
              res.status(200).json(newUser);
         }catch(e){

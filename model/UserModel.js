@@ -30,6 +30,10 @@ const userSchema=mongoose.Schema({
         type:Number,
         default:0,
     },
+    image:{
+        type:String,
+        default:'',
+    },
     rating:{
         type:Number,
         default:3,
@@ -38,10 +42,7 @@ const userSchema=mongoose.Schema({
         type:String,
         default:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, laboriosam. Perspiciatis doloremque nesciunt, autem illum cupiditate eum error!"
     },
-    image:{
-        type:String,
-        default:'',
-    },
+   
     isAdmin:{
         type:Boolean,
         default:false,

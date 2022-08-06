@@ -20,7 +20,7 @@ export const AuthMiddleWare=async(req,res,next)=>{
                 // console.log('genToken',token)
                  verifyToken= jwt.verify(splitToken,process.env.SECRET)
                 //  console.log('verfiyId', verifyToken.id)
-                 req.user=await User.findById(verifyToken.id).select('-password')
+                 req.user=await User.findById(verifyToken.id)
                  
                 console.log('calling Next')
                  next()
